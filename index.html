@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UgenX Technology | AI-Powered Digital Automation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        :root{--bg:#000;--cyan:#06b6d4;--blue:#2563eb;--purple:#a855f7;--muted:#9ca3af;--surface:rgba(17,24,39,0.8);--border:rgba(6,182,212,0.15);--gradient:linear-gradient(to right,#06b6d4,#2563eb)}
+        html{scroll-behavior:smooth}
+        body{font-family:'Inter',sans-serif;background:var(--bg);color:#fff;overflow-x:hidden;line-height:1.6}
+        a{text-decoration:none;color:inherit}
+        .grad{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .grad-p{background:linear-gradient(to right,#a855f7,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+        /* ANIMATIONS */
+        .fade{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+        .fade.vis{opacity:1;transform:translateY(0)}
+
+        /* LOGO */
+        .logo-top{position:fixed;top:28px;left:50%;transform:translateX(-50%) translateY(-60px);z-index:100;opacity:0;transition:all 1s cubic-bezier(.16,1,.3,1);cursor:pointer;font-size:26px;font-weight:900;letter-spacing:-1px}
+        .logo-top.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+        /* HAMBURGER */
+        .ham{position:fixed;top:28px;left:20px;z-index:200;width:44px;height:44px;background:rgba(0,0,0,.6);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.1);border-radius:12px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;transition:.3s}
+        .ham:hover{border-color:var(--cyan)}
+        .ham span{display:block;width:20px;height:2px;background:#fff;transition:.3s;border-radius:2px}
+        .ham.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+        .ham.open span:nth-child(2){opacity:0}
+        .ham.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+        /* SIDE MENU */
+        .side{position:fixed;top:0;left:0;width:280px;height:100vh;background:rgba(0,0,0,.95);backdrop-filter:blur(20px);border-right:1px solid rgba(6,182,212,.12);z-index:150;transform:translateX(-100%);transition:transform .4s cubic-bezier(.16,1,.3,1);padding:100px 28px 28px;display:flex;flex-direction:column;gap:6px}
+        .side.open{transform:translateX(0)}
+        .side a{display:block;padding:14px 18px;font-size:15px;font-weight:600;color:var(--muted);border-radius:12px;transition:.3s}
+        .side a:hover{color:var(--cyan);background:rgba(6,182,212,.08)}
+        .overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:140;opacity:0;pointer-events:none;transition:.3s}
+        .overlay.show{opacity:1;pointer-events:all}
+
+        /* LANG */
+        .lang-btn{position:fixed;top:28px;right:20px;z-index:200;display:flex;align-items:center;gap:6px;padding:10px 14px;background:rgba(0,0,0,.6);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.1);border-radius:12px;cursor:pointer;font-family:inherit;font-size:13px;font-weight:600;color:#fff;transition:.3s}
+        .lang-btn:hover{border-color:var(--cyan)}
+        .lang-btn svg{width:16px;height:16px}
+        .lang-dd{position:fixed;top:78px;right:20px;z-index:200;background:rgba(17,24,39,.95);backdrop-filter:blur(20px);border:1px solid rgba(6,182,212,.2);border-radius:12px;padding:6px;opacity:0;transform:translateY(-10px);pointer-events:none;transition:.3s}
+        .lang-dd.show{opacity:1;transform:translateY(0);pointer-events:all}
+        .lang-dd button{display:flex;align-items:center;gap:8px;width:100%;padding:10px 14px;background:none;border:none;color:var(--muted);font-family:inherit;font-size:14px;border-radius:8px;cursor:pointer;transition:.2s}
+        .lang-dd button:hover{background:rgba(6,182,212,.1);color:#fff}
+        .lang-dd button.act{color:var(--cyan)}
+
+        /* SECTIONS */
+        .sec{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:100px 24px;position:relative}
+        .sec-in{max-width:1100px;width:100%;margin:0 auto}
+        .sec-t{font-size:clamp(32px,5.5vw,56px);font-weight:800;line-height:1.1;letter-spacing:-1.5px;margin-bottom:14px}
+        .sec-div{width:80px;height:4px;background:var(--gradient);border-radius:4px;margin:0 auto 28px}
+        .sec-sub{font-size:17px;color:var(--muted);max-width:580px}
+
+        /* HERO */
+        .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;overflow:hidden;position:relative}
+        .hero::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:radial-gradient(ellipse at center top,rgba(6,182,212,.08) 0%,transparent 60%);pointer-events:none}
+        .hero h1{font-size:clamp(38px,7vw,68px);font-weight:900;line-height:1.05;letter-spacing:-2px;margin-bottom:18px}
+        .hero p{font-size:18px;color:var(--muted);max-width:540px;margin:0 auto 36px}
+        .cta{display:inline-flex;align-items:center;gap:10px;padding:16px 36px;background:var(--gradient);border:none;border-radius:100px;color:#fff;font-family:inherit;font-size:17px;font-weight:700;cursor:pointer;transition:.3s;box-shadow:0 0 30px rgba(6,182,212,.3)}
+        .cta:hover{transform:scale(1.05);box-shadow:0 0 50px rgba(6,182,212,.5)}
+        .cta svg{width:20px;height:20px;transition:transform .3s}
+        .cta:hover svg{transform:translateX(4px)}
+
+        /* VM */
+        .vm-g{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+        .vm-c{padding:36px;border-radius:20px;border:1px solid var(--border);background:linear-gradient(to bottom right,rgba(17,24,39,.6),rgba(0,0,0,.8));transition:.4s}
+        .vm-c:hover{border-color:rgba(6,182,212,.4);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.4)}
+        .vm-c h3{font-size:26px;font-weight:800;margin-bottom:14px}
+        .vm-c p{color:var(--muted);font-size:15px;line-height:1.7}
+
+        /* SERVICES */
+        .sv-g{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+        .sv-c{padding:32px;border-radius:20px;border:1px solid var(--border);background:linear-gradient(to bottom right,rgba(6,182,212,.04),rgba(37,99,235,.04));transition:.4s}
+        .sv-c:hover{border-color:rgba(6,182,212,.5);box-shadow:0 0 40px rgba(6,182,212,.08);transform:translateY(-4px)}
+        .sv-i{font-size:36px;margin-bottom:14px;display:block}
+        .sv-c h3{font-size:18px;font-weight:700;margin-bottom:8px}
+        .sv-c p{color:var(--muted);font-size:14px;line-height:1.7}
+
+        /* SECTORS */
+        .sc-lab{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:14px}
+        .sc-row{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:28px}
+        .sc-ch{padding:14px 24px;border-radius:14px;font-size:14px;font-weight:600;transition:.3s;cursor:default}
+        .sc-a{background:linear-gradient(to bottom right,rgba(6,182,212,.12),rgba(37,99,235,.12));border:1px solid rgba(6,182,212,.4);color:var(--cyan)}
+        .sc-a:hover{background:linear-gradient(to bottom right,rgba(6,182,212,.22),rgba(37,99,235,.22));box-shadow:0 0 25px rgba(6,182,212,.12)}
+        .sc-s{background:rgba(75,85,99,.15);border:1px solid rgba(75,85,99,.25);color:rgba(156,163,175,.55)}
+
+        /* KPI */
+        .kpi-g{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+        .kpi-c{padding:36px;border-radius:20px;border:1px solid;text-align:center;transition:.3s}
+        .kpi-c:hover{transform:translateY(-2px)}
+        .kpi-c:nth-child(1){background:linear-gradient(to bottom right,rgba(6,182,212,.1),rgba(37,99,235,.1));border-color:rgba(6,182,212,.35)}
+        .kpi-c:nth-child(2){background:linear-gradient(to bottom right,rgba(37,99,235,.1),rgba(168,85,247,.1));border-color:rgba(37,99,235,.35)}
+        .kpi-c:nth-child(3){background:linear-gradient(to bottom right,rgba(37,99,235,.1),rgba(168,85,247,.1));border-color:rgba(37,99,235,.35)}
+        .kpi-c:nth-child(4){background:linear-gradient(to bottom right,rgba(168,85,247,.1),rgba(6,182,212,.1));border-color:rgba(168,85,247,.35)}
+        .kpi-n{font-size:52px;font-weight:900;margin-bottom:8px}
+        .kpi-c:nth-child(1) .kpi-n{color:var(--cyan)}
+        .kpi-c:nth-child(2) .kpi-n{color:#60a5fa}
+        .kpi-c:nth-child(3) .kpi-n{color:#60a5fa}
+        .kpi-c:nth-child(4) .kpi-n{color:var(--purple)}
+        .kpi-c h4{font-size:17px;color:#d1d5db;margin-bottom:6px}
+        .kpi-c p{font-size:13px;color:var(--muted)}
+
+        /* REFERENCES */
+        .ref-g{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+        .ref-c{position:relative;padding:28px;border-radius:20px;border:1px solid rgba(6,182,212,.18);background:linear-gradient(to bottom right,rgba(17,24,39,.7),rgba(0,0,0,.9));cursor:pointer;transition:.4s;overflow:hidden}
+        .ref-c::before{content:'';position:absolute;top:50%;left:50%;width:130%;height:130%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(6,182,212,.18) 0%,transparent 70%);opacity:0;transition:opacity .5s;z-index:0;pointer-events:none}
+        .ref-c:hover::before{opacity:1}
+        .ref-c:hover{border-color:var(--cyan);box-shadow:0 0 50px rgba(6,182,212,.12),0 0 100px rgba(6,182,212,.04);transform:translateY(-4px)}
+        .ref-c>*{position:relative;z-index:1}
+        .ref-c h3{font-size:19px;font-weight:700;margin-bottom:6px}
+        .ref-res{display:inline-block;font-size:13px;font-weight:700;color:var(--cyan);margin-bottom:10px}
+        .ref-h{font-size:12px;color:rgba(6,182,212,.45);margin-top:10px;display:flex;align-items:center;gap:6px}
+        .ref-h svg{width:14px;height:14px}
+        .ref-d{max-height:0;overflow:hidden;transition:max-height .5s ease,margin .3s,opacity .3s;opacity:0}
+        .ref-d.open{max-height:300px;margin-top:14px;opacity:1}
+        .ref-d-in{padding-top:14px;border-top:1px solid rgba(6,182,212,.12)}
+        .ref-d p{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:10px}
+        .ref-q{padding:14px;background:rgba(6,182,212,.05);border-left:3px solid var(--cyan);border-radius:0 12px 12px 0;font-style:italic;font-size:14px;color:#d1d5db;line-height:1.6}
+
+        /* CONTACT */
+        .ct-sec{background:linear-gradient(to top,#000,rgba(17,24,39,.4),#000)}
+        .ct-btn{display:inline-flex;align-items:center;gap:10px;padding:18px 40px;background:var(--gradient);border:none;border-radius:100px;color:#fff;font-family:inherit;font-size:17px;font-weight:700;cursor:pointer;transition:.3s;box-shadow:0 0 35px rgba(6,182,212,.3)}
+        .ct-btn:hover{transform:scale(1.05);box-shadow:0 0 55px rgba(6,182,212,.5)}
+
+        /* SCROLL TOP */
+        .st-w{position:fixed;bottom:28px;left:0;right:0;display:flex;justify-content:center;z-index:100;pointer-events:none;opacity:0;transition:opacity .4s}
+        .st-w.show{opacity:1}
+        .st-b{width:50px;height:50px;border-radius:50%;background:var(--gradient);border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;pointer-events:all;box-shadow:0 0 25px rgba(6,182,212,.4);transition:.3s;animation:bnc 2s infinite}
+        .st-b:hover{transform:scale(1.1);box-shadow:0 0 45px rgba(6,182,212,.6)}
+        .st-b svg{width:22px;height:22px}
+        @keyframes bnc{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+
+        /* FOOTER */
+        .ft{text-align:center;padding:36px 24px;border-top:1px solid rgba(75,85,99,.25);color:var(--muted);font-size:13px}
+
+        @media(max-width:768px){
+            .vm-g,.sv-g,.kpi-g,.ref-g{grid-template-columns:1fr}
+            .sc-row{justify-content:center}
+        }
+    </style>
+</head>
+<body>
+
+<div class="logo-top" id="logoTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><span>Ugen<span class="grad">X</span></span></div>
+
+<button class="ham" id="ham" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+<div class="overlay" id="ov" onclick="toggleMenu()"></div>
+<nav class="side" id="side">
+    <a onclick="nav('about')" data-tr="Hakkımızda" data-en="About Us">Hakkımızda</a>
+    <a onclick="nav('services')" data-tr="Hizmetler" data-en="Services">Hizmetler</a>
+    <a onclick="nav('sectors')" data-tr="Sektörler" data-en="Sectors">Sektörler</a>
+    <a onclick="nav('success')" data-tr="Başarılar" data-en="Success">Başarılar</a>
+    <a onclick="nav('refs')" data-tr="Referanslar" data-en="References">Referanslar</a>
+    <a onclick="nav('contact')" data-tr="İletişim" data-en="Contact">İletişim</a>
+</nav>
+
+<button class="lang-btn" onclick="toggleLang()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+    <span id="lbl">🇹🇷 TR</span>
+</button>
+<div class="lang-dd" id="ldd">
+    <button class="act" onclick="setLang('tr')">🇹🇷 Türkçe</button>
+    <button onclick="setLang('en')">🇬🇧 English</button>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+    <div>
+        <h1 class="fade" data-tr="Geleceği Şekillendirin" data-en="Shape the Future">Geleceği Şekillendirin</h1>
+        <p class="fade" style="transition-delay:.1s" data-tr="Yeni nesil teknolojilerle işletmenizi upgrade edin. AI destekli otomasyon çözümleri ile verimliliğinizi 10x artırın." data-en="Upgrade your business with next-gen technology. Boost efficiency 10x with AI-powered automation solutions.">Yeni nesil teknolojilerle işletmenizi upgrade edin. AI destekli otomasyon çözümleri ile verimliliğinizi 10x artırın.</p>
+        <div class="fade" style="transition-delay:.2s">
+            <button class="cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+                <span data-tr="Hemen Başlayın" data-en="Get Started">Hemen Başlayın</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- VISION & MISSION -->
+<section class="sec" id="about">
+    <div class="sec-in">
+        <div style="text-align:center;margin-bottom:56px">
+            <h2 class="sec-t fade"><span class="grad" data-tr="Vizyonumuz" data-en="Our Vision">Vizyonumuz</span> & <span class="grad-p" data-tr="Misyonumuz" data-en="Our Mission">Misyonumuz</span></h2>
+            <div class="sec-div fade" style="transition-delay:.05s"></div>
+        </div>
+        <div class="vm-g">
+            <div class="vm-c fade" style="transition-delay:.1s">
+                <h3 class="grad" data-tr="Vizyonumuz" data-en="Our Vision">Vizyonumuz</h3>
+                <p data-tr="Operasyonel kararların insanlar yerine yapay zekâ tarafından alındığı, otonom çalışan kurumlar inşa eden lider kurum olmak." data-en="To be the leading institution building autonomous organizations where operational decisions are made by artificial intelligence instead of humans.">Operasyonel kararların insanlar yerine yapay zekâ tarafından alındığı, otonom çalışan kurumlar inşa eden lider kurum olmak.</p>
+            </div>
+            <div class="vm-c fade" style="transition-delay:.2s">
+                <h3 class="grad-p" data-tr="Misyonumuz" data-en="Our Mission">Misyonumuz</h3>
+                <p data-tr="Kurumların operasyonel verilerini gerçek zamanlı içgörülere ve aksiyonlara dönüştüren, maliyetleri düşüren ve karar hızını artıran yapay zekâ çözümleri geliştirmek." data-en="To develop AI solutions that transform organizations' operational data into real-time insights and actions, reducing costs and increasing decision speed.">Kurumların operasyonel verilerini gerçek zamanlı içgörülere ve aksiyonlara dönüştüren, maliyetleri düşüren ve karar hızını artıran yapay zekâ çözümleri geliştirmek.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section class="sec" id="services">
+    <div class="sec-in">
+        <div style="text-align:center;margin-bottom:16px">
+            <h2 class="sec-t fade"><span class="grad" data-tr="Hizmetlerimiz" data-en="Our Services">Hizmetlerimiz</span></h2>
+            <div class="sec-div fade" style="transition-delay:.05s"></div>
+            <p class="sec-sub fade" style="margin:0 auto 44px;transition-delay:.1s" data-tr="Başta oteller olmak üzere, rutin süreçleri tam otomasyon ile hızlandırıyor, 7/24 çalışma sağlıyor ve yüksek KPI'lar sunuyoruz." data-en="We accelerate routine processes with full automation, especially for hotels, providing 24/7 service and high KPIs.">Başta oteller olmak üzere, rutin süreçleri tam otomasyon ile hızlandırıyor, 7/24 çalışma sağlıyor ve yüksek KPI'lar sunuyoruz.</p>
+        </div>
+        <div class="sv-g">
+            <div class="sv-c fade" style="transition-delay:.05s"><span class="sv-i">🤖</span><h3 data-tr="AI-Powered Automation" data-en="AI-Powered Automation">AI-Powered Automation</h3><p data-tr="Instagram ve WhatsApp'tan gelen müşterileri yapay zeka ile otomatik olarak satış sürecine dahil ediyoruz." data-en="We automatically integrate customers from Instagram and WhatsApp into the sales process with AI.">Instagram ve WhatsApp'tan gelen müşterileri yapay zeka ile otomatik olarak satış sürecine dahil ediyoruz.</p></div>
+            <div class="sv-c fade" style="transition-delay:.1s"><span class="sv-i">⏰</span><h3 data-tr="7/24 Hizmet" data-en="24/7 Service">7/24 Hizmet</h3><p data-tr="Tüm dillerde kesintisiz çalışan sistemler ile müşterilerinize her an ulaşılabilir olun." data-en="Be reachable to your customers at all times with systems that work uninterrupted in all languages.">Tüm dillerde kesintisiz çalışan sistemler ile müşterilerinize her an ulaşılabilir olun.</p></div>
+            <div class="sv-c fade" style="transition-delay:.15s"><span class="sv-i">⚙️</span><h3 data-tr="No-Code/Low-Code" data-en="No-Code/Low-Code">No-Code/Low-Code</h3><p data-tr="Rutin süreçleri optimize ederek, manuel iş yükünü minimize ediyoruz." data-en="We minimize manual workload by optimizing routine processes.">Rutin süreçleri optimize ederek, manuel iş yükünü minimize ediyoruz.</p></div>
+            <div class="sv-c fade" style="transition-delay:.2s"><span class="sv-i">📈</span><h3 data-tr="Yüksek KPI" data-en="High KPI">Yüksek KPI</h3><p data-tr="Dönüş süresini 30 saniyenin altına indirerek %100 lead kazanımı sağlıyoruz." data-en="We ensure 100% lead acquisition by reducing response time to under 30 seconds.">Dönüş süresini 30 saniyenin altına indirerek %100 lead kazanımı sağlıyoruz.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTORS -->
+<section class="sec" id="sectors">
+    <div class="sec-in">
+        <div style="text-align:center;margin-bottom:44px">
+            <h2 class="sec-t fade"><span class="grad" data-tr="Sektörler" data-en="Sectors">Sektörler</span></h2>
+            <div class="sec-div fade" style="transition-delay:.05s"></div>
+        </div>
+        <div class="fade" style="transition-delay:.1s">
+            <p class="sc-lab" style="color:var(--cyan)" data-tr="Aktif Sektörler" data-en="Active Sectors">Aktif Sektörler</p>
+            <div class="sc-row">
+                <div class="sc-ch sc-a" data-tr="🏨 Otelcilik" data-en="🏨 Hospitality">🏨 Otelcilik</div>
+                <div class="sc-ch sc-a" data-tr="🛒 E-Ticaret" data-en="🛒 E-Commerce">🛒 E-Ticaret</div>
+                <div class="sc-ch sc-a" data-tr="🏢 Kurumsal Şirketler" data-en="🏢 Corporate">🏢 Kurumsal Şirketler</div>
+            </div>
+        </div>
+        <div class="fade" style="transition-delay:.2s">
+            <p class="sc-lab" style="color:var(--muted)" data-tr="Yakında" data-en="Coming Soon">Yakında</p>
+            <div class="sc-row">
+                <div class="sc-ch sc-s" data-tr="🏠 Gayrimenkul" data-en="🏠 Real Estate">🏠 Gayrimenkul</div>
+                <div class="sc-ch sc-s" data-tr="🏥 Sağlık" data-en="🏥 Healthcare">🏥 Sağlık</div>
+                <div class="sc-ch sc-s" data-tr="💰 Finans" data-en="💰 Finance">💰 Finans</div>
+                <div class="sc-ch sc-s" data-tr="🍽️ Restoran & Cafe" data-en="🍽️ Restaurant & Cafe">🍽️ Restoran & Cafe</div>
+                <div class="sc-ch sc-s" data-tr="📚 Eğitim" data-en="📚 Education">📚 Eğitim</div>
+                <div class="sc-ch sc-s" data-tr="🛍️ Perakende" data-en="🛍️ Retail">🛍️ Perakende</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- KPI -->
+<section class="sec" id="success">
+    <div class="sec-in">
+        <div style="text-align:center;margin-bottom:44px">
+            <h2 class="sec-t fade"><span class="grad" data-tr="Başarı Hikayelerimiz" data-en="Our Success Stories">Başarı Hikayelerimiz</span></h2>
+            <div class="sec-div fade" style="transition-delay:.05s"></div>
+        </div>
+        <div class="kpi-g">
+            <div class="kpi-c fade" style="transition-delay:.05s"><div class="kpi-n">%100</div><h4 data-tr="Lead Kazanımı" data-en="Lead Acquisition">Lead Kazanımı</h4><p data-tr="Tüm kanallardan gelen sorgular satışa dönüşüyor" data-en="All channel inquiries convert to sales">Tüm kanallardan gelen sorgular satışa dönüşüyor</p></div>
+            <div class="kpi-c fade" style="transition-delay:.1s"><div class="kpi-n">&lt;30sn</div><h4 data-tr="Yanıt Süresi" data-en="Response Time">Yanıt Süresi</h4><p data-tr="Anında otomatik yanıt sistemi" data-en="Instant automatic response system">Anında otomatik yanıt sistemi</p></div>
+            <div class="kpi-c fade" style="transition-delay:.15s"><div class="kpi-n">%95</div><h4 data-tr="İş Yükü Azalma" data-en="Workload Reduction">İş Yükü Azalma</h4><p data-tr="Manuel ve rutin işlerin eliminasyonu" data-en="Elimination of manual and routine tasks">Manuel ve rutin işlerin eliminasyonu</p></div>
+            <div class="kpi-c fade" style="transition-delay:.2s"><div class="kpi-n">7/24</div><h4 data-tr="Kesintisiz Hizmet" data-en="Non-Stop Service">Kesintisiz Hizmet</h4><p data-tr="Tüm dillerde her zaman aktif" data-en="Always active in all languages">Tüm dillerde her zaman aktif</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- REFERENCES -->
+<section class="sec" id="refs">
+    <div class="sec-in">
+        <div style="text-align:center;margin-bottom:44px">
+            <h2 class="sec-t fade"><span class="grad" data-tr="Referanslarımız" data-en="Our References">Referanslarımız</span></h2>
+            <div class="sec-div fade" style="transition-delay:.05s"></div>
+        </div>
+        <div class="ref-g">
+            <div class="ref-c fade" style="transition-delay:.05s" onclick="tRef(0)">
+                <h3 data-tr="Boutique Otel Zincirleri" data-en="Boutique Hotel Chains">Boutique Otel Zincirleri</h3>
+                <span class="ref-res" data-tr="Lead kazanımı %100 artış" data-en="100% increase in lead acquisition">Lead kazanımı %100 artış</span>
+                <div class="ref-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg><span data-tr="Detaylar için tıklayın" data-en="Click for details">Detaylar için tıklayın</span></div>
+                <div class="ref-d" id="r0"><div class="ref-d-in"><p data-tr="5 farklı boutique otelde uyguladığımız AI destekli rezervasyon sistemi ile Instagram ve WhatsApp'tan gelen sorguların %100'ü lead'e dönüştü." data-en="With our AI-powered reservation system in 5 boutique hotels, 100% of Instagram and WhatsApp inquiries converted to leads.">5 farklı boutique otelde uyguladığımız AI destekli rezervasyon sistemi ile Instagram ve WhatsApp'tan gelen sorguların %100'ü lead'e dönüştü.</p><div class="ref-q" data-tr="&quot;UgenX sayesinde gece yarısı bile müşteri kaybetmiyoruz. Sistem saniyeler içinde yanıt veriyor ve rezervasyon alıyor. İnanılmaz!&quot;" data-en="&quot;Thanks to UgenX, we don't lose customers even at midnight. The system responds in seconds and takes reservations. Amazing!&quot;">"UgenX sayesinde gece yarısı bile müşteri kaybetmiyoruz. Sistem saniyeler içinde yanıt veriyor ve rezervasyon alıyor. İnanılmaz!"</div></div></div>
+            </div>
+            <div class="ref-c fade" style="transition-delay:.1s" onclick="tRef(1)">
+                <h3 data-tr="Orta Ölçekli Oteller" data-en="Mid-Size Hotels">Orta Ölçekli Oteller</h3>
+                <span class="ref-res" data-tr="Yanıt süresi <30 saniye" data-en="Response time <30 seconds">Yanıt süresi &lt;30 saniye</span>
+                <div class="ref-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg><span data-tr="Detaylar için tıklayın" data-en="Click for details">Detaylar için tıklayın</span></div>
+                <div class="ref-d" id="r1"><div class="ref-d-in"><p data-tr="8 otelde toplam 450+ yatak kapasitesi için kurduğumuz sistem, çok dilli destek ile tüm platformlardan gelen sorulara 20 saniye içinde yanıt veriyor." data-en="Our system installed in 8 hotels with 450+ bed capacity responds to queries from all platforms in 20 seconds with multilingual support.">8 otelde toplam 450+ yatak kapasitesi için kurduğumuz sistem, çok dilli destek ile tüm platformlardan gelen sorulara 20 saniye içinde yanıt veriyor.</p><div class="ref-q" data-tr="&quot;Müşteri memnuniyeti puanımız 4.9'a yükseldi. Hiçbir mesaj cevapsız kalmıyor ve ekibimiz stratejik işlere odaklanabiliyor.&quot;" data-en="&quot;Our customer satisfaction score rose to 4.9. No message goes unanswered and our team can focus on strategic tasks.&quot;">"Müşteri memnuniyeti puanımız 4.9'a yükseldi. Hiçbir mesaj cevapsız kalmıyor ve ekibimiz stratejik işlere odaklanabiliyor."</div></div></div>
+            </div>
+            <div class="ref-c fade" style="transition-delay:.15s" onclick="tRef(2)">
+                <h3 data-tr="E-Ticaret Platformları" data-en="E-Commerce Platforms">E-Ticaret Platformları</h3>
+                <span class="ref-res" data-tr="Manuel iş yükü %95 azalma" data-en="95% reduction in manual workload">Manuel iş yükü %95 azalma</span>
+                <div class="ref-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg><span data-tr="Detaylar için tıklayın" data-en="Click for details">Detaylar için tıklayın</span></div>
+                <div class="ref-d" id="r2"><div class="ref-d-in"><p data-tr="Sipariş takibi, müşteri soruları ve iade süreçlerini tamamen otomatikleştirdik. Günde 500+ müşteri etkileşimi otomatik yönetiliyor." data-en="We fully automated order tracking, customer inquiries and return processes. 500+ daily customer interactions managed automatically.">Sipariş takibi, müşteri soruları ve iade süreçlerini tamamen otomatikleştirdik. Günde 500+ müşteri etkileşimi otomatik yönetiliyor.</p><div class="ref-q" data-tr="&quot;Müşteri hizmetleri ekibimizi 8 kişiden 1 kişiye düşürdük. Sistem her şeyi hallediyor, biz sadece istisnalara bakıyoruz.&quot;" data-en="&quot;We reduced our customer service team from 8 to 1 person. The system handles everything, we only handle exceptions.&quot;">"Müşteri hizmetleri ekibimizi 8 kişiden 1 kişiye düşürdük. Sistem her şeyi hallediyor, biz sadece istisnalara bakıyoruz."</div></div></div>
+            </div>
+            <div class="ref-c fade" style="transition-delay:.2s" onclick="tRef(3)">
+                <h3 data-tr="Kurumsal Şirketler" data-en="Corporate Companies">Kurumsal Şirketler</h3>
+                <span class="ref-res" data-tr="Operasyonel verimlilik 3x" data-en="3x operational efficiency">Operasyonel verimlilik 3x</span>
+                <div class="ref-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg><span data-tr="Detaylar için tıklayın" data-en="Click for details">Detaylar için tıklayın</span></div>
+                <div class="ref-d" id="r3"><div class="ref-d-in"><p data-tr="Dahili süreç otomasyonları ve veri analizi ile operasyonel kararların %70'i artık AI tarafından alınıyor ve uygulanıyor." data-en="With internal process automation and data analysis, 70% of operational decisions are now made and implemented by AI.">Dahili süreç otomasyonları ve veri analizi ile operasyonel kararların %70'i artık AI tarafından alınıyor ve uygulanıyor.</p><div class="ref-q" data-tr="&quot;Veriye dayalı karar alma süremiz 3 günden 3 saate düştü. UgenX sistemleri sayesinde gerçek zamanlı içgörüler elde ediyoruz.&quot;" data-en="&quot;Our data-driven decision time dropped from 3 days to 3 hours. With UgenX systems, we get real-time insights.&quot;">"Veriye dayalı karar alma süremiz 3 günden 3 saate düştü. UgenX sistemleri sayesinde gerçek zamanlı içgörüler elde ediyoruz."</div></div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="sec ct-sec" id="contact">
+    <div class="sec-in" style="text-align:center">
+        <h2 class="sec-t fade"><span class="grad" data-tr="Geleceğe Hazır mısınız?" data-en="Ready for the Future?">Geleceğe Hazır mısınız?</span></h2>
+        <p class="sec-sub fade" style="margin:0 auto 44px;text-align:center;transition-delay:.1s" data-tr="İşletmenizi bir sonraki seviyeye taşımak için bizimle iletişime geçin." data-en="Contact us to take your business to the next level.">İşletmenizi bir sonraki seviyeye taşımak için bizimle iletişime geçin.</p>
+        <div class="fade" style="transition-delay:.2s">
+            <a href="mailto:ugenxtech@outlook.com" class="ct-btn">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                ugenxtech@outlook.com
+            </a>
+        </div>
+    </div>
+</section>
+
+<div class="ft"><p>© 2024 UgenX Technology. <span data-tr="Tüm hakları saklıdır." data-en="All rights reserved.">Tüm hakları saklıdır.</span></p></div>
+
+<div class="st-w" id="stw">
+    <button class="st-b" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
+</div>
+
+<script>
+let sRef=null;
+setTimeout(()=>document.getElementById('logoTop').classList.add('show'),400);
+
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis')})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+
+window.addEventListener('scroll',()=>{
+    document.getElementById('stw').classList.toggle('show',window.scrollY>window.innerHeight);
+});
+
+function toggleMenu(){
+    document.getElementById('ham').classList.toggle('open');
+    document.getElementById('side').classList.toggle('open');
+    document.getElementById('ov').classList.toggle('show');
+}
+function nav(id){toggleMenu();setTimeout(()=>document.getElementById(id).scrollIntoView({behavior:'smooth'}),300)}
+
+function toggleLang(){document.getElementById('ldd').classList.toggle('show')}
+document.addEventListener('click',e=>{if(!e.target.closest('.lang-btn')&&!e.target.closest('.lang-dd'))document.getElementById('ldd').classList.remove('show')});
+
+function setLang(l){
+    document.getElementById('lbl').textContent=l==='tr'?'🇹🇷 TR':'🇬🇧 EN';
+    document.getElementById('ldd').classList.remove('show');
+    document.querySelectorAll('[data-'+l+']').forEach(el=>{
+        const v=el.getAttribute('data-'+l);
+        if(v){
+            if(el.classList.contains('ref-q'))el.innerHTML=v;
+            else el.textContent=v;
+        }
+    });
+    document.querySelectorAll('.lang-dd button').forEach(b=>b.classList.remove('act'));
+    document.querySelector('.lang-dd button[onclick="setLang(\''+l+'\')"]').classList.add('act');
+}
+
+function tRef(i){
+    const el=document.getElementById('r'+i);
+    if(sRef===i){el.classList.remove('open');sRef=null}
+    else{document.querySelectorAll('.ref-d').forEach(d=>d.classList.remove('open'));el.classList.add('open');sRef=i}
+}
+</script>
+</body>
+</html>

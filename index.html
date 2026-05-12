@@ -1,208 +1,571 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UgenX Technology | Yapay Zeka Destekli Dijital Otomasyon</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="/UgenxIcon.png?v=100">
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title data-tr="UgenX Technology | Yapay Zeka Destekli Dijital Otomasyon" data-en="UgenX Technology | AI-Powered Digital Automation">UgenX Technology | Yapay Zeka Destekli Dijital Otomasyon</title>
+<meta name="description" content="UgenX Technology — Yeni nesil teknolojilerle işletmenizi upgrade edin. Yapay zeka destekli otomasyon çözümleri ile verimliliğinizi 10x artırın." />
+<link rel="icon" href="UgenxLogo.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<!-- Logo -->
-<div class="logo-top" id="logoTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-    <span style="font-size:26px;font-weight:900;letter-spacing:-1px">Ugen<span class="grad">X</span></span>
-</div>
+<!-- ============== NAV ============== -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="#top" class="nav__brand" aria-label="UgenX Technology">
+      <img src="/UgenXLogo.png" class="brand-name" alt="Brand Logo">
+    </a>
 
-<!-- Hamburger Menu -->
-<button class="ham" id="ham" onclick="toggleMenu()"><span></span><span></span><span></span></button>
-<div class="overlay" id="ov" onclick="toggleMenu()"></div>
-<nav class="side" id="side">
-    <a onclick="nav('about')" data-tr="Hakkımızda" data-en="About Us">Hakkımızda</a>
-    <a onclick="nav('services')" data-tr="Hizmetler" data-en="Services">Hizmetler</a>
-    <a onclick="nav('sectors')" data-tr="Sektörler" data-en="Sectors">Sektörler</a>
-    <a onclick="nav('success')" data-tr="Başarılar" data-en="Success">Başarılar</a>
-    <a onclick="nav('refs')" data-tr="Referanslar" data-en="References">Referanslar</a>
-    <a onclick="nav('contact')" data-tr="İletişim" data-en="Contact">İletişim</a>
-</nav>
+    <nav class="nav__links" aria-label="Ana menü">
+      <a href="#hizmetler" data-tr="Hizmetler" data-en="Services">Hizmetler</a>
+      <a href="#nasil" data-tr="Nasıl Çalışır" data-en="How It Works">Nasıl Çalışır</a>
+      <a href="#sektorler" data-tr="Sektörler" data-en="Industries">Sektörler</a>
+      <a href="#basari" data-tr="Başarılar" data-en="Results">Başarılar</a>
+      <a href="#referanslar" data-tr="Referanslar" data-en="Cases">Referanslar</a>
+    </nav>
 
-<!-- Language Selector -->
-<button class="lang-btn" onclick="toggleLang()">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-    <span id="lbl">🇹🇷 TR</span>
-</button>
-<div class="lang-dd" id="ldd">
-    <button class="act" onclick="setLang('tr')">🇹🇷 Türkçe</button>
-    <button onclick="setLang('en')">🇬🇧 English</button>
-</div>
-
-<!-- ==================== HERO ==================== -->
-<section class="hero" id="hero">
-    <img src="/UgenxLogo.png" alt="UgenX Technology" class="hero-logo">
-    <div>
-        <h1 class="fade" data-tr="Geleceği Şekillendirin" data-en="Shape the Future">Geleceği Şekillendirin</h1>
-        <p class="fade" style="transition-delay:.1s" data-tr="Yeni nesil teknolojilerle işletmenizi upgrade edin. Yapay zeka destekli otomasyon çözümleri ile verimliliğinizi 10x artırın." data-en="Upgrade your business with next-gen technology. Boost efficiency 10x with AI-powered automation solutions.">Yeni nesil teknolojilerle işletmenizi upgrade edin. Yapay zeka destekli otomasyon çözümleri ile verimliliğinizi 10x artırın.</p>
-        <div class="fade" style="transition-delay:.2s">
-            <button class="cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-                <span data-tr="Hemen Başlayın" data-en="Get Started">Hemen Başlayın</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </button>
-        </div>
+    <div class="nav__actions">
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button class="lang-btn is-active" data-lang="tr">TR</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <a href="#iletisim" class="btn btn--primary btn--sm">
+        <span data-tr="Görüşme Planla" data-en="Book a Call">Görüşme Planla</span>
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3 8 L13 8 M9 4 L13 8 L9 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <button class="nav__burger" id="burger" aria-label="Menü" aria-expanded="false">
+        <span></span><span></span>
+      </button>
     </div>
+  </div>
+</header>
+
+<!-- ============== HERO ============== -->
+<section class="hero" id="top">
+  <div class="hero__bg" aria-hidden="true"></div>
+
+  <div class="hero__inner">
+
+    <div class="hero__content" data-reveal>
+      <span class="badge">
+        <span class="badge__dot"></span>
+        <span data-tr="Yapay Zeka Destekli Dijital Otomasyon" data-en="AI-Powered Digital Automation">Yapay Zeka Destekli Dijital Otomasyon</span>
+      </span>
+
+      <h1 class="hero__title">
+        <span data-tr="Müşteriniz mesaj atar," data-en="Your customer messages,">Müşteriniz mesaj atar,</span><br>
+        <span class="grad-text" data-tr="AI cevaplar." data-en="AI replies.">AI cevaplar.</span>
+      </h1>
+
+      <p class="hero__sub" data-tr="Instagram ve WhatsApp'tan gelen müşterileri yapay zeka ile otomatik karşılayan, satışa dönüştüren sistem. 7/24 çalışır, 30 saniyenin altında yanıtlar." data-en="A system that greets customers from Instagram and WhatsApp with AI and converts them to sales. Works 24/7, replies in under 30 seconds.">
+        Instagram ve WhatsApp'tan gelen müşterileri yapay zeka ile otomatik karşılayan, satışa dönüştüren sistem. 7/24 çalışır, 30 saniyenin altında yanıtlar.
+      </p>
+
+      <div class="hero__cta">
+        <a href="#iletisim" class="btn btn--dark btn--lg">
+          <span data-tr="Hemen Başlayın" data-en="Get Started">Hemen Başlayın</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 12 L19 12 M13 6 L19 12 L13 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#nasil" class="btn btn--ghost btn--lg">
+          <span data-tr="Nasıl çalışır?" data-en="How it works?">Nasıl çalışır?</span>
+        </a>
+      </div>
+
+      <div class="hero__metrics">
+        <div class="metric">
+          <div class="metric__num">%99</div>
+          <div class="metric__label" data-tr="Müşteri adayı kazanımı" data-en="Lead conversion">Müşteri adayı kazanımı</div>
+        </div>
+        <div class="metric">
+          <div class="metric__num">&lt;30sn</div>
+          <div class="metric__label" data-tr="Yanıt süresi" data-en="Response time">Yanıt süresi</div>
+        </div>
+        <div class="metric">
+          <div class="metric__num">7/24</div>
+          <div class="metric__label" data-tr="Aktif" data-en="Active">Aktif</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__visual" data-reveal>
+      <div class="phone-glow" aria-hidden="true"></div>
+
+      <div class="phone">
+        <div class="phone__notch"></div>
+        <div class="phone__screen">
+          <div class="chat__header">
+            <div class="chat__avatar">U</div>
+            <div class="chat__title">
+              <div class="chat__name">UgenX Asistan</div>
+              <div class="chat__status"><span class="chat__dot"></span> <span data-tr="Çevrimiçi" data-en="Online">Çevrimiçi</span></div>
+            </div>
+          </div>
+
+          <div class="chat__body">
+            <div class="bubble bubble--in" data-tr="Merhaba, bu hafta sonu deniz manzaralı oda var mı?" data-en="Hi, do you have sea-view rooms this weekend?">Merhaba, bu hafta sonu deniz manzaralı oda var mı?</div>
+            <div class="bubble bubble--out" data-tr="Tabii ki! Cumartesi için 2 kişilik deluxe deniz manzaralı odamız 4.500₺. Rezervasyon yapayım mı?" data-en="Of course! Our deluxe sea-view double room for Saturday is ₺4,500. Shall I book it for you?">Tabii ki! Cumartesi için 2 kişilik deluxe deniz manzaralı odamız 4.500₺. Rezervasyon yapayım mı?</div>
+            <div class="bubble bubble--in" data-tr="Evet lütfen 🙏" data-en="Yes please 🙏">Evet lütfen 🙏</div>
+            <div class="bubble bubble--out" data-tr="Rezervasyonunuz onaylandı ✓ Detaylar e-postanıza gönderildi." data-en="Your booking is confirmed ✓ Details sent to your email.">Rezervasyonunuz onaylandı ✓ Detaylar e-postanıza gönderildi.</div>
+            <div class="bubble bubble--typing"><span></span><span></span><span></span></div>
+          </div>
+
+          <div class="chat__input">
+            <div class="chat__field" data-tr="Mesaj yaz..." data-en="Type a message...">Mesaj yaz...</div>
+            <div class="chat__send">
+              <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M4 12 L20 4 L14 20 L11 13 L4 12 Z" fill="white"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="float-card float-card--top">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M13 2 L4 14 L11 14 L11 22 L20 10 L13 10 Z" fill="url(#g1)"/><defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#06b6d4"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs></svg>
+        <span><strong data-tr="19 saniye" data-en="19 seconds">19 saniye</strong><span data-tr="de yanıt" data-en=" response">de yanıt</span></span>
+      </div>
+
+      <div class="float-card float-card--bot">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12 L10 17 L20 7" fill="none" stroke="url(#g2)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#06b6d4"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs></svg>
+        <span><span data-tr="Müşteri adayı" data-en="Lead">Müşteri adayı</span> <strong data-tr="kazanıldı" data-en="won">kazanıldı</strong></span>
+      </div>
+    </div>
+
+  </div>
 </section>
 
-<!-- ==================== VISION & MISSION ==================== -->
-<section class="sec" id="about">
-    <div class="sec-in">
-        <div style="text-align:center;margin-bottom:56px">
-            <h2 class="sec-t fade"><span class="grad" data-tr="Vizyonumuz" data-en="Our Vision">Vizyonumuz</span> & <span class="grad-p" data-tr="Misyonumuz" data-en="Our Mission">Misyonumuz</span></h2>
-            <div class="sec-div fade" style="transition-delay:.05s"></div>
-        </div>
-        <div class="vm-g">
-            <div class="vm-c fade" style="transition-delay:.1s">
-                <h3 class="grad" data-tr="Vizyonumuz" data-en="Our Vision">Vizyonumuz</h3>
-                <p data-tr="Operasyonel kararların insanlar yerine yapay zekâ tarafından alındığı, otonom çalışan kurumlar inşa eden lider kurum olmak." data-en="To be the leading institution building autonomous organizations where operational decisions are made by artificial intelligence instead of humans.">Operasyonel kararların insanlar yerine yapay zekâ tarafından alındığı, otonom çalışan kurumlar inşa eden lider kurum olmak.</p>
-            </div>
-            <div class="vm-c fade" style="transition-delay:.2s">
-                <h3 class="grad-p" data-tr="Misyonumuz" data-en="Our Mission">Misyonumuz</h3>
-                <p data-tr="Kurumların operasyonel verilerini gerçek zamanlı içgörülere ve aksiyonlara dönüştüren, maliyetleri düşüren ve karar hızını artıran yapay zekâ çözümleri geliştirmek." data-en="To develop AI solutions that transform organizations' operational data into real-time insights and actions, reducing costs and increasing decision speed.">Kurumların operasyonel verilerini gerçek zamanlı içgörülere ve aksiyonlara dönüştüren, maliyetleri düşüren ve karar hızını artıran yapay zekâ çözümleri geliştirmek.</p>
-            </div>
-        </div>
+<!-- ============== TICKER ============== -->
+<section class="ticker">
+  <div class="ticker__label" data-tr="Hizmet verdiğimiz sektörler" data-en="Industries we serve">Hizmet verdiğimiz sektörler</div>
+  <div class="ticker__track-wrap">
+    <div class="ticker__track">
+      <span data-tr="Otelcilik" data-en="Hospitality">Otelcilik</span><i></i>
+      <span data-tr="Hostes &amp; Karşılama" data-en="Hostess &amp; Reception">Hostes &amp; Karşılama</span><i></i>
+      <span data-tr="E-Ticaret" data-en="E-Commerce">E-Ticaret</span><i></i>
+      <span data-tr="Kurumsal Şirketler" data-en="Enterprise">Kurumsal Şirketler</span><i></i>
+      <span data-tr="Sağlık" data-en="Healthcare">Sağlık</span><i></i>
+      <span data-tr="Restoran &amp; Cafe" data-en="Restaurant &amp; Cafe">Restoran &amp; Cafe</span><i></i>
+      <span data-tr="Otelcilik" data-en="Hospitality" aria-hidden="true">Otelcilik</span><i aria-hidden="true"></i>
+      <span data-tr="Hostes &amp; Karşılama" data-en="Hostess &amp; Reception" aria-hidden="true">Hostes &amp; Karşılama</span><i aria-hidden="true"></i>
+      <span data-tr="E-Ticaret" data-en="E-Commerce" aria-hidden="true">E-Ticaret</span><i aria-hidden="true"></i>
+      <span data-tr="Kurumsal Şirketler" data-en="Enterprise" aria-hidden="true">Kurumsal Şirketler</span><i aria-hidden="true"></i>
+      <span data-tr="Sağlık" data-en="Healthcare" aria-hidden="true">Sağlık</span><i aria-hidden="true"></i>
+      <span data-tr="Restoran &amp; Cafe" data-en="Restaurant &amp; Cafe" aria-hidden="true">Restoran &amp; Cafe</span><i aria-hidden="true"></i>
     </div>
+  </div>
 </section>
 
-<!-- ==================== SERVICES ==================== -->
-<section class="sec" id="services">
-    <div class="sec-in">
-        <div style="text-align:center;margin-bottom:16px">
-            <h2 class="sec-t fade"><span class="grad" data-tr="Hizmetlerimiz" data-en="Our Services">Hizmetlerimiz</span></h2>
-            <div class="sec-div fade" style="transition-delay:.05s"></div>
-            <p class="sec-sub fade" style="margin:0 auto 44px;transition-delay:.1s" data-tr="Başta oteller olmak üzere, rutin süreçleri tam otomasyon ile hızlandırıyor, 7/24 çalışma sağlıyor ve yüksek KPI'lar sunuyoruz." data-en="We accelerate routine processes with full automation, especially for hotels, providing 24/7 service and high KPIs.">Başta oteller olmak üzere, rutin süreçleri tam otomasyon ile hızlandırıyor, 7/24 çalışma sağlıyor ve yüksek KPI'lar sunuyoruz.</p>
-        </div>
-        <div class="sv-g">
-            <div class="sv-c fade" style="transition-delay:.05s">
-                <div class="sv-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4c0 1.95-1.4 3.58-3.25 3.93"/><path d="M8.56 9.8A4.002 4.002 0 0 1 12 2"/><circle cx="12" cy="12" r="1"/><path d="m17 17-5-5"/><path d="M20 20h.01"/><circle cx="20" cy="20" r="2"/><path d="M4.5 19.5 12 12"/><circle cx="4" cy="20" r="2"/></svg></div>
-                <h3 data-tr="Yapay Zeka Otomasyonu" data-en="AI-Powered Automation">Yapay Zeka Otomasyonu</h3>
-                <p data-tr="Instagram ve WhatsApp'tan gelen müşterileri yapay zeka ile otomatik olarak satış sürecine dahil ediyoruz." data-en="We automatically integrate customers from Instagram and WhatsApp into the sales process with AI.">Instagram ve WhatsApp'tan gelen müşterileri yapay zeka ile otomatik olarak satış sürecine dahil ediyoruz.</p>
-            </div>
-            <div class="sv-c fade" style="transition-delay:.1s">
-                <div class="sv-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-                <h3 data-tr="7/24 Kesintisiz Hizmet" data-en="24/7 Non-Stop Service">7/24 Kesintisiz Hizmet</h3>
-                <p data-tr="Tüm dillerde kesintisiz çalışan sistemler ile müşterilerinize her an ulaşılabilir olun." data-en="Be reachable to your customers at all times with systems that work uninterrupted in all languages.">Tüm dillerde kesintisiz çalışan sistemler ile müşterilerinize her an ulaşılabilir olun.</p>
-            </div>
-            <div class="sv-c fade" style="transition-delay:.15s">
-                <div class="sv-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
-                <h3 data-tr="Kodsuz Süreç Otomasyonu" data-en="No-Code Process Automation">Kodsuz Süreç Otomasyonu</h3>
-                <p data-tr="Rutin süreçleri optimize ederek, manuel iş yükünü minimize ediyoruz." data-en="We minimize manual workload by optimizing routine processes.">Rutin süreçleri optimize ederek, manuel iş yükünü minimize ediyoruz.</p>
-            </div>
-            <div class="sv-c fade" style="transition-delay:.2s">
-                <div class="sv-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/><path d="m22 2-5 5"/><path d="m17 2 5 5"/></svg></div>
-                <h3 data-tr="Yüksek Performans Metrikleri" data-en="High Performance Metrics">Yüksek Performans Metrikleri</h3>
-                <p data-tr="Dönüş süresini 30 saniyenin altına indirerek %99 lead kazanımı sağlıyoruz." data-en="We ensure 99% lead acquisition by reducing response time to under 30 seconds.">Dönüş süresini 30 saniyenin altına indirerek %99 lead kazanımı sağlıyoruz.</p>
-            </div>
-        </div>
+<!-- ============== BRAND SHOWCASE ============== -->
+<section class="brand-show">
+  <div class="brand-show__bg" aria-hidden="true"></div>
+  <div class="container">
+    <div class="brand-show__inner" data-reveal>
+      <span class="badge badge--soft" data-tr="Markamız" data-en="Our Brand">Markamız</span>
+      <div class="brand-show__logo-wrap">
+        <img src="UgenxLogo.png" alt="UgenX Technology" class="brand-show__logo" />
+      </div>
+      <h2 class="brand-show__title">
+        <span data-tr="Yapay zekâyı işiniz için " data-en="Putting AI to work for ">Yapay zekâyı işiniz için </span>
+        <span class="grad-text" data-tr="çalıştırıyoruz" data-en="your business">çalıştırıyoruz</span>.
+      </h2>
+      <p class="brand-show__sub" data-tr="UgenX Technology, kurumsal süreçlere yapay zekâ ile dokunan, ölçülebilir sonuçlar üreten Türkiye merkezli bir otomasyon ekibidir." data-en="UgenX Technology is a Türkiye-based automation team that brings AI to enterprise processes and delivers measurable outcomes.">
+        UgenX Technology, kurumsal süreçlere yapay zekâ ile dokunan, ölçülebilir sonuçlar üreten Türkiye merkezli bir otomasyon ekibidir.
+      </p>
     </div>
+  </div>
 </section>
 
-<!-- ==================== SECTORS (Updated — Clickable with Expandable Services) ==================== -->
-<section class="sec" id="sectors">
-    <div class="sec-in">
-        <div style="text-align:center;margin-bottom:44px">
-            <h2 class="sec-t fade"><span class="grad" data-tr="Hizmet Verdiğimiz Sektörler" data-en="Sectors We Serve">Hizmet Verdiğimiz Sektörler</span></h2>
-            <div class="sec-div fade" style="transition-delay:.05s"></div>
+<!-- ============== HİZMETLER ============== -->
+<section class="services" id="hizmetler">
+  <div class="container">
+    <header class="section-head" data-reveal>
+      <span class="badge badge--soft" data-tr="Hizmetler" data-en="Services">Hizmetler</span>
+      <h2 class="section-title">
+        <span data-tr="Rutin süreçleri kapatıyoruz, " data-en="We close routine processes, ">Rutin süreçleri kapatıyoruz, </span>
+        <span class="grad-text" data-tr="siz stratejiye odaklanın" data-en="you focus on strategy">siz stratejiye odaklanın</span>.
+      </h2>
+      <p class="section-lead" data-tr="Başta oteller olmak üzere, rutin süreçleri tam otomasyon ile hızlandırıyor, 7/24 çalışma sağlıyor ve yüksek KPI'lar sunuyoruz." data-en="Starting with hotels, we accelerate routine processes with full automation, ensure 24/7 operation, and deliver high KPIs.">
+        Başta oteller olmak üzere, rutin süreçleri tam otomasyon ile hızlandırıyor, 7/24 çalışma sağlıyor ve yüksek KPI'lar sunuyoruz.
+      </p>
+    </header>
+
+    <div class="services__grid">
+
+      <article class="svc-card svc-card--big" data-reveal>
+        <div class="svc-card__icon">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <path d="M5 5 H19 Q21 5 21 7 V15 Q21 17 19 17 H13 L9 21 V17 H5 Q3 17 3 15 V7 Q3 5 5 5 Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            <circle cx="8.5" cy="11" r="1" fill="currentColor"/>
+            <circle cx="12" cy="11" r="1" fill="currentColor"/>
+            <circle cx="15.5" cy="11" r="1" fill="currentColor"/>
+          </svg>
         </div>
-        <div class="fade" style="transition-delay:.1s">
-            <div class="sc-row">
-                <div class="sc-ch sc-a" data-sector="otelcilik" onclick="toggleSector('otelcilik')" data-tr="🏨 Otelcilik" data-en="🏨 Hospitality">🏨 Otelcilik <span class="sc-arrow">▼</span></div>
-                <div class="sc-ch sc-a" data-sector="hostes" onclick="toggleSector('hostes')" data-tr="🎀 Hostes / Karşılama" data-en="🎀 Hostess / Greeting">🎀 Hostes / Karşılama <span class="sc-arrow">▼</span></div>
-                <div class="sc-ch sc-a" data-sector="eticaret" onclick="toggleSector('eticaret')" data-tr="🛒 E-Ticaret" data-en="🛒 E-Commerce">🛒 E-Ticaret <span class="sc-arrow">▼</span></div>
-                <div class="sc-ch sc-a" data-sector="kurumsal" onclick="toggleSector('kurumsal')" data-tr="🏢 Kurumsal Şirketler" data-en="🏢 Corporate">🏢 Kurumsal Şirketler <span class="sc-arrow">▼</span></div>
-                <div class="sc-ch sc-a" data-sector="saglik" onclick="toggleSector('saglik')" data-tr="🏥 Sağlık" data-en="🏥 Healthcare">🏥 Sağlık <span class="sc-arrow">▼</span></div>
-                <div class="sc-ch sc-a" data-sector="restoran" onclick="toggleSector('restoran')" data-tr="🍽️ Restoran & Cafe" data-en="🍽️ Restaurant & Cafe">🍽️ Restoran & Cafe <span class="sc-arrow">▼</span></div>
-            </div>
-            <!-- Expandable services panel (rendered dynamically by JS) -->
-            <div class="sc-services" id="sc-panel"></div>
+        <h3 class="svc-card__title" data-tr="Yapay Zeka Otomasyonu" data-en="AI Automation">Yapay Zeka Otomasyonu</h3>
+        <p class="svc-card__body" data-tr="Instagram ve WhatsApp'tan gelen müşterileri yapay zeka ile otomatik olarak satış sürecine dahil ediyoruz." data-en="We automatically include customers coming from Instagram and WhatsApp into the sales process with AI.">
+          Instagram ve WhatsApp'tan gelen müşterileri yapay zeka ile otomatik olarak satış sürecine dahil ediyoruz.
+        </p>
+        <ul class="svc-card__list">
+          <li data-tr="Niyet sınıflandırma + diyalog yönetimi" data-en="Intent classification + dialog management">Niyet sınıflandırma + diyalog yönetimi</li>
+          <li data-tr="CRM ve takvim entegrasyonu" data-en="CRM and calendar integration">CRM ve takvim entegrasyonu</li>
+          <li data-tr="İnsan devri kurallı handoff" data-en="Rule-based human handoff">İnsan devri kurallı handoff</li>
+        </ul>
+      </article>
+
+      <article class="svc-card" data-reveal>
+        <div class="svc-card__icon">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M12 7 V12 L15 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
         </div>
+        <h3 class="svc-card__title" data-tr="7/24 Kesintisiz Hizmet" data-en="24/7 Uninterrupted Service">7/24 Kesintisiz Hizmet</h3>
+        <p class="svc-card__body" data-tr="Tüm dillerde kesintisiz çalışan sistemler ile müşterilerinize her an ulaşılabilir olun." data-en="Be reachable to your customers at any moment with systems running uninterrupted in all languages.">
+          Tüm dillerde kesintisiz çalışan sistemler ile müşterilerinize her an ulaşılabilir olun.
+        </p>
+      </article>
+
+      <article class="svc-card" data-reveal>
+        <div class="svc-card__icon">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <rect x="3" y="6" width="18" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M7 10 L10 12 L7 14 M12 14 H17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="svc-card__title" data-tr="Kodsuz Süreç Otomasyonu" data-en="No-Code Process Automation">Kodsuz Süreç Otomasyonu</h3>
+        <p class="svc-card__body" data-tr="Rutin süreçleri optimize ederek, manuel iş yükünü minimize ediyoruz." data-en="By optimizing routine processes, we minimize manual workload.">
+          Rutin süreçleri optimize ederek, manuel iş yükünü minimize ediyoruz.
+        </p>
+      </article>
+
+      <article class="svc-card svc-card--wide" data-reveal>
+        <div class="svc-card__icon">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <path d="M3 18 L9 12 L13 16 L21 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16 8 H21 V13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="svc-card__title" data-tr="Yüksek Performans Metrikleri" data-en="High Performance Metrics">Yüksek Performans Metrikleri</h3>
+        <p class="svc-card__body" data-tr="Dönüş süresini 30 saniyenin altına indirerek %99 müşteri adayı kazanımı sağlıyoruz. Her operasyon canlı pano ile takip edilir, haftalık özet rapor otomatik gelir." data-en="By reducing response time to under 30 seconds, we deliver 99% lead conversion. Every operation is tracked on a live dashboard, with weekly summary reports delivered automatically.">
+          Dönüş süresini 30 saniyenin altına indirerek %99 müşteri adayı kazanımı sağlıyoruz. Her operasyon canlı pano ile takip edilir, haftalık özet rapor otomatik gelir.
+        </p>
+      </article>
+
     </div>
+  </div>
 </section>
 
-<!-- ==================== KPI ==================== -->
-<section class="sec" id="success">
-    <div class="sec-in">
-        <div style="text-align:center;margin-bottom:44px">
-            <h2 class="sec-t fade"><span class="grad" data-tr="Başarı Hikayelerimiz" data-en="Our Success Stories">Başarı Hikayelerimiz</span></h2>
-            <div class="sec-div fade" style="transition-delay:.05s"></div>
+<!-- ============== NASIL ÇALIŞIR ============== -->
+<section class="how" id="nasil">
+  <div class="container">
+    <header class="section-head" data-reveal>
+      <span class="badge badge--soft" data-tr="Nasıl Çalışır?" data-en="How It Works">Nasıl Çalışır?</span>
+      <h2 class="section-title">
+        <span data-tr="3 adımda " data-en="Full automation in ">3 adımda </span>
+        <span class="grad-text" data-tr="tam otomasyon" data-en="3 steps">tam otomasyon</span>.
+      </h2>
+    </header>
+
+    <div class="how__steps">
+
+      <article class="step" data-reveal>
+        <div class="step__num">01</div>
+        <h3 class="step__title" data-tr="Mesaj gelir" data-en="Message arrives">Mesaj gelir</h3>
+        <p class="step__body" data-tr="Instagram, WhatsApp veya web formundan gelen sorgu sisteme düşer." data-en="A query from Instagram, WhatsApp, or a web form lands in the system.">
+          Instagram, WhatsApp veya web formundan gelen sorgu sisteme düşer.
+        </p>
+        <div class="step__visual step__visual--inbox">
+          <div class="inbox-line"><span class="inbox-line__dot inbox-line__dot--ig"></span> @misafir_ali · 2 dk</div>
+          <div class="inbox-line"><span class="inbox-line__dot inbox-line__dot--wa"></span> +90 533 ··· · 30 sn</div>
+          <div class="inbox-line inbox-line--new"><span class="inbox-line__dot inbox-line__dot--new"></span> <span data-tr="Yeni · şimdi" data-en="New · now">Yeni · şimdi</span></div>
         </div>
-        <div class="kpi-g">
-            <div class="kpi-c fade" style="transition-delay:.05s"><div class="kpi-n">%99</div><h4 data-tr="Lead Kazanımı" data-en="Lead Acquisition">Lead Kazanımı</h4><p data-tr="Tüm kanallardan gelen sorgular satışa dönüşüyor" data-en="All channel inquiries convert to sales">Tüm kanallardan gelen sorgular satışa dönüşüyor</p></div>
-            <div class="kpi-c fade" style="transition-delay:.1s"><div class="kpi-n">&lt;30sn</div><h4 data-tr="Yanıt Süresi" data-en="Response Time">Yanıt Süresi</h4><p data-tr="Anında otomatik yanıt sistemi" data-en="Instant automatic response system">Anında otomatik yanıt sistemi</p></div>
-            <div class="kpi-c fade" style="transition-delay:.15s"><div class="kpi-n">%95</div><h4 data-tr="İş Yükü Azalma" data-en="Workload Reduction">İş Yükü Azalma</h4><p data-tr="Manuel ve rutin işlerin eliminasyonu" data-en="Elimination of manual and routine tasks">Manuel ve rutin işlerin eliminasyonu</p></div>
-            <div class="kpi-c fade" style="transition-delay:.2s"><div class="kpi-n">7/24</div><h4 data-tr="Kesintisiz Hizmet" data-en="Non-Stop Service">Kesintisiz Hizmet</h4><p data-tr="Tüm dillerde her zaman aktif" data-en="Always active in all languages">Tüm dillerde her zaman aktif</p></div>
+      </article>
+
+      <article class="step" data-reveal>
+        <div class="step__num">02</div>
+        <h3 class="step__title" data-tr="AI işler" data-en="AI processes">AI işler</h3>
+        <p class="step__body" data-tr="Niyet sınıflanır, fiyat ve uygunluk sorgulanır, doğru cevap üretilir." data-en="Intent is classified, price and availability are checked, the right answer is generated.">
+          Niyet sınıflanır, fiyat ve uygunluk sorgulanır, doğru cevap üretilir.
+        </p>
+        <div class="step__visual step__visual--brain">
+          <div class="brain-pill">intent: <strong>reservation</strong></div>
+          <div class="brain-pill">lang: <strong>tr-TR</strong></div>
+          <div class="brain-pill">price.lookup() <span class="ok">✓</span></div>
+          <div class="brain-pill">availability.check() <span class="ok">✓</span></div>
         </div>
+      </article>
+
+      <article class="step" data-reveal>
+        <div class="step__num">03</div>
+        <h3 class="step__title" data-tr="Müşteri kazanılır" data-en="Customer is won">Müşteri kazanılır</h3>
+        <p class="step__body" data-tr="19 saniyede yanıt gönderilir, rezervasyon CRM'e işlenir, ekip bilgilenir." data-en="A reply is sent in 19 seconds, the booking is logged in the CRM, the team is notified.">
+          19 saniyede yanıt gönderilir, rezervasyon CRM'e işlenir, ekip bilgilenir.
+        </p>
+        <div class="step__visual step__visual--win">
+          <div class="win-stat">
+            <span class="win-stat__num">19sn</span>
+            <span class="win-stat__lbl" data-tr="yanıt süresi" data-en="response time">yanıt süresi</span>
+          </div>
+          <div class="win-stat">
+            <span class="win-stat__num">✓</span>
+            <span class="win-stat__lbl" data-tr="müşteri adayı kazanıldı" data-en="lead won">müşteri adayı kazanıldı</span>
+          </div>
+        </div>
+      </article>
+
     </div>
+  </div>
 </section>
 
-<!-- ==================== REFERENCES ==================== -->
-<section class="sec" id="refs">
-    <div class="sec-in">
-        <div style="text-align:center;margin-bottom:44px">
-            <h2 class="sec-t fade"><span class="grad" data-tr="Referanslarımız" data-en="Our References">Referanslarımız</span></h2>
-            <div class="sec-div fade" style="transition-delay:.05s"></div>
+<!-- ============== SEKTÖRLER ============== -->
+<section class="sectors" id="sektorler">
+  <div class="container">
+    <header class="section-head" data-reveal>
+      <span class="badge badge--soft" data-tr="Sektörler" data-en="Industries">Sektörler</span>
+      <h2 class="section-title" data-tr="Hizmet verdiğimiz sektörler." data-en="Industries we serve.">Hizmet verdiğimiz sektörler.</h2>
+    </header>
+
+    <div class="sectors__grid">
+
+      <article class="sector sector--feature" data-reveal>
+        <div class="sector__icon">
+          <svg viewBox="0 0 32 32" width="40" height="40" aria-hidden="true">
+            <path d="M4 28 L4 14 L16 6 L28 14 L28 28 Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="M11 28 L11 19 L21 19 L21 28" fill="none" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M14 24 L18 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <circle cx="16" cy="13" r="1.4" fill="currentColor"/>
+          </svg>
         </div>
-        <div class="ref-g">
-            <div class="ref-c fade" style="transition-delay:.05s" onclick="tRef(0)">
-                <h3 data-tr="Otel Grupları" data-en="Hotel Groups">Otel Grupları</h3>
-                <span class="ref-res" data-tr="Lead kazanımı %99 artış · Yanıt süresi <30sn" data-en="99% increase in lead acquisition · Response time <30s">Lead kazanımı %99 artış · Yanıt süresi &lt;30sn</span>
-                <div class="ref-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg><span data-tr="Detaylar için tıklayın" data-en="Click for details">Detaylar için tıklayın</span></div>
-                <div class="ref-d" id="r0"><div class="ref-d-in"><p data-tr="13 farklı otelde uyguladığımız AI destekli rezervasyon sistemi ile Instagram ve WhatsApp'tan gelen sorguların %99'u lead'e dönüştü. Çok dilli destek ile tüm platformlardan gelen sorulara 20 saniye içinde yanıt veriliyor." data-en="With our AI-powered reservation system implemented in 13 hotels, 99% of Instagram and WhatsApp inquiries converted to leads. Multilingual support responds to all platform queries within 20 seconds.">13 farklı otelde uyguladığımız AI destekli rezervasyon sistemi ile Instagram ve WhatsApp'tan gelen sorguların %99'u lead'e dönüştü. Çok dilli destek ile tüm platformlardan gelen sorulara 20 saniye içinde yanıt veriliyor.</p><div class="ref-q" data-tr="&quot;UgenX sayesinde gece yarısı bile müşteri kaybetmiyoruz. Müşteri memnuniyeti puanımız 4.9'a yükseldi. Hiçbir mesaj cevapsız kalmıyor ve ekibimiz stratejik işlere odaklanabiliyor.&quot;" data-en="&quot;Thanks to UgenX, we don't lose customers even at midnight. Our satisfaction score rose to 4.9. No message goes unanswered and our team can focus on strategic tasks.&quot;">"UgenX sayesinde gece yarısı bile müşteri kaybetmiyoruz. Müşteri memnuniyeti puanımız 4.9'a yükseldi. Hiçbir mesaj cevapsız kalmıyor ve ekibimiz stratejik işlere odaklanabiliyor."</div></div></div>
-            </div>
-            <div class="ref-c fade" style="transition-delay:.1s" onclick="tRef(1)">
-                <h3 data-tr="E-Ticaret Kullanıcıları" data-en="E-Commerce Users">E-Ticaret Kullanıcıları</h3>
-                <span class="ref-res" data-tr="Manuel iş yükü %95 azalma" data-en="95% reduction in manual workload">Manuel iş yükü %95 azalma</span>
-                <div class="ref-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg><span data-tr="Detaylar için tıklayın" data-en="Click for details">Detaylar için tıklayın</span></div>
-                <div class="ref-d" id="r1"><div class="ref-d-in"><p data-tr="Sipariş takibi, müşteri soruları ve iade süreçlerini tamamen otomatikleştirdik. Günde 500+ müşteri etkileşimi otomatik yönetiliyor." data-en="We fully automated order tracking, customer inquiries and return processes. 500+ daily customer interactions managed automatically.">Sipariş takibi, müşteri soruları ve iade süreçlerini tamamen otomatikleştirdik. Günde 500+ müşteri etkileşimi otomatik yönetiliyor.</p><div class="ref-q" data-tr="&quot;Müşteri hizmetleri ekibimizi 8 kişiden 1 kişiye düşürdük. Sistem her şeyi hallediyor, biz sadece istisnalara bakıyoruz.&quot;" data-en="&quot;We reduced our customer service team from 8 to 1 person. The system handles everything, we only handle exceptions.&quot;">"Müşteri hizmetleri ekibimizi 8 kişiden 1 kişiye düşürdük. Sistem her şeyi hallediyor, biz sadece istisnalara bakıyoruz."</div></div></div>
-            </div>
-            <div class="ref-c fade" style="transition-delay:.15s" onclick="tRef(2)">
-                <h3 data-tr="Kurumsal Şirketler" data-en="Corporate Companies">Kurumsal Şirketler</h3>
-                <span class="ref-res" data-tr="Operasyonel verimlilik 3x" data-en="3x operational efficiency">Operasyonel verimlilik 3x</span>
-                <div class="ref-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg><span data-tr="Detaylar için tıklayın" data-en="Click for details">Detaylar için tıklayın</span></div>
-                <div class="ref-d" id="r2"><div class="ref-d-in"><p data-tr="Dahili süreç otomasyonları ve veri analizi ile operasyonel kararların %70'i artık AI tarafından alınıyor ve uygulanıyor." data-en="With internal process automation and data analysis, 70% of operational decisions are now made and implemented by AI.">Dahili süreç otomasyonları ve veri analizi ile operasyonel kararların %70'i artık AI tarafından alınıyor ve uygulanıyor.</p><div class="ref-q" data-tr="&quot;Veriye dayalı karar alma süremiz 3 günden 3 saate düştü. UgenX sistemleri sayesinde gerçek zamanlı içgörüler elde ediyoruz.&quot;" data-en="&quot;Our data-driven decision time dropped from 3 days to 3 hours. With UgenX systems, we get real-time insights.&quot;">"Veriye dayalı karar alma süremiz 3 günden 3 saate düştü. UgenX sistemleri sayesinde gerçek zamanlı içgörüler elde ediyoruz."</div></div></div>
-            </div>
+        <h3 class="sector__name" data-tr="Otelcilik" data-en="Hospitality">Otelcilik</h3>
+        <p class="sector__desc" data-tr="13+ otelde devreye aldığımız AI rezervasyon sistemi. Çok dilli misafir iletişimi, PMS entegrasyonu, gece yarısı bile satış." data-en="AI reservation system deployed at 13+ hotels. Multilingual guest communication, PMS integration, sales even at midnight.">
+          13+ otelde devreye aldığımız AI rezervasyon sistemi. Çok dilli misafir iletişimi, PMS entegrasyonu, gece yarısı bile satış.
+        </p>
+        <span class="sector__tag" data-tr="Öne çıkan sektör" data-en="Featured industry">Öne çıkan sektör</span>
+      </article>
+
+      <article class="sector" data-reveal>
+        <div class="sector__icon sector__icon--soft">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <path d="M5 7 L7 4 H17 L19 7 V19 Q19 20 18 20 H6 Q5 20 5 19 Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="M9 11 Q9 14 12 14 Q15 14 15 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
         </div>
+        <h3 class="sector__name" data-tr="E-Ticaret" data-en="E-Commerce">E-Ticaret</h3>
+        <p class="sector__desc" data-tr="Sipariş takibi, iade ve müşteri sorularını uçtan uca otomatikleştiriyoruz." data-en="We automate order tracking, returns, and customer questions end-to-end.">
+          Sipariş takibi, iade ve müşteri sorularını uçtan uca otomatikleştiriyoruz.
+        </p>
+      </article>
+
+      <article class="sector" data-reveal>
+        <div class="sector__icon sector__icon--soft">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <rect x="4" y="3" width="16" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            <line x1="8" y1="7" x2="10" y2="7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <line x1="14" y1="7" x2="16" y2="7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <line x1="8" y1="11" x2="10" y2="11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <line x1="14" y1="11" x2="16" y2="11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <rect x="10.5" y="15" width="3" height="6" fill="none" stroke="currentColor" stroke-width="1.6"/>
+          </svg>
+        </div>
+        <h3 class="sector__name" data-tr="Kurumsal Şirketler" data-en="Enterprise">Kurumsal Şirketler</h3>
+        <p class="sector__desc" data-tr="Dahili süreç otomasyonu ve veri analizi ile karar hızını artırıyoruz." data-en="We accelerate decision-making with internal process automation and data analysis.">
+          Dahili süreç otomasyonu ve veri analizi ile karar hızını artırıyoruz.
+        </p>
+      </article>
+
+      <article class="sector" data-reveal>
+        <div class="sector__icon sector__icon--soft">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <path d="M3 12 H8 L10 7 L14 17 L16 12 H21" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="sector__name" data-tr="Sağlık" data-en="Healthcare">Sağlık</h3>
+        <p class="sector__desc" data-tr="Klinik ve poliklinikler için randevu, hatırlatma, ön bilgilendirme." data-en="Appointment, reminder, and pre-visit information for clinics and polyclinics.">
+          Klinik ve poliklinikler için randevu, hatırlatma, ön bilgilendirme.
+        </p>
+      </article>
+
+      <article class="sector" data-reveal>
+        <div class="sector__icon sector__icon--soft">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <path d="M6 3 V11 Q6 13 8 13 V21 M10 3 V11 M8 3 V8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <path d="M17 3 Q15 5 15 9 Q15 12 17 13 V21" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="sector__name" data-tr="Restoran &amp; Cafe" data-en="Restaurant &amp; Cafe">Restoran &amp; Cafe</h3>
+        <p class="sector__desc" data-tr="Masa rezervasyonu, paket sipariş ve sadakat programını tek hat." data-en="Table booking, takeaway orders, and loyalty program in one channel.">
+          Masa rezervasyonu, paket sipariş ve sadakat programını tek hat.
+        </p>
+      </article>
+
+      <article class="sector" data-reveal>
+        <div class="sector__icon sector__icon--soft">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <circle cx="9" cy="8" r="3.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M3 20 Q3 14 9 14 Q15 14 15 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <path d="M16 11 L18 9 L20 11 M18 9 V14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="sector__name" data-tr="Hostes / Karşılama" data-en="Hostess / Reception">Hostes / Karşılama</h3>
+        <p class="sector__desc" data-tr="Etkinlik öncesi RSVP, gün içi liste, sonrası geri bildirim akışı." data-en="Pre-event RSVP, day-of list management, post-event feedback flow.">
+          Etkinlik öncesi RSVP, gün içi liste, sonrası geri bildirim akışı.
+        </p>
+      </article>
+
     </div>
+  </div>
 </section>
 
-<!-- ==================== CONTACT ==================== -->
-<section class="sec ct-sec" id="contact">
-    <div class="sec-in" style="text-align:center">
-        <h2 class="sec-t fade"><span class="grad" data-tr="Geleceğe Hazır mısınız?" data-en="Ready for the Future?">Geleceğe Hazır mısınız?</span></h2>
-        <p class="sec-sub fade" style="margin:0 auto 44px;text-align:center;transition-delay:.1s" data-tr="İşletmenizi bir sonraki seviyeye taşımak için bizimle iletişime geçin." data-en="Contact us to take your business to the next level.">İşletmenizi bir sonraki seviyeye taşımak için bizimle iletişime geçin.</p>
-        <div class="fade" style="transition-delay:.2s">
-            <a href="mailto:info@ugenxteknoloji.com.tr" class="ct-btn">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                info@ugenxteknoloji.com.tr
-            </a>
-            <div style="display:flex;justify-content:center;gap:16px;margin-top:24px">
-                <a href="https://www.instagram.com/ugenxteknoloji/" target="_blank" rel="noopener" title="Instagram" style="width:44px;height:44px;border-radius:12px;border:1px solid rgba(6,182,212,.25);display:flex;align-items:center;justify-content:center;color:#9ca3af;transition:.3s"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-                <a href="https://www.linkedin.com/company/ugenx-technology/" target="_blank" rel="noopener" title="LinkedIn" style="width:44px;height:44px;border-radius:12px;border:1px solid rgba(6,182,212,.25);display:flex;align-items:center;justify-content:center;color:#9ca3af;transition:.3s"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
-            </div>
-        </div>
+<!-- ============== BAŞARILAR ============== -->
+<section class="stats" id="basari">
+  <div class="container">
+    <header class="section-head section-head--center" data-reveal>
+      <span class="badge badge--soft" data-tr="Başarı Hikayelerimiz" data-en="Success Stories">Başarı Hikayelerimiz</span>
+      <h2 class="section-title" data-tr="Sayılarla konuşuyoruz." data-en="We speak in numbers.">Sayılarla konuşuyoruz.</h2>
+    </header>
+
+    <div class="stats__grid">
+      <article class="stat-item" data-reveal>
+        <div class="stat-item__num"><span data-counter="99">0</span><i>%</i></div>
+        <h3 class="stat-item__title" data-tr="Müşteri Adayı Kazanımı" data-en="Lead Conversion">Müşteri Adayı Kazanımı</h3>
+        <p class="stat-item__body" data-tr="Tüm kanallardan gelen sorgular satışa dönüşüyor." data-en="Queries from all channels turn into sales.">Tüm kanallardan gelen sorgular satışa dönüşüyor.</p>
+      </article>
+      <article class="stat-item" data-reveal>
+        <div class="stat-item__num">&lt;<span data-counter="30">0</span><i>sn</i></div>
+        <h3 class="stat-item__title" data-tr="Yanıt Süresi" data-en="Response Time">Yanıt Süresi</h3>
+        <p class="stat-item__body" data-tr="Anında otomatik yanıt sistemi." data-en="Instant automated reply system.">Anında otomatik yanıt sistemi.</p>
+      </article>
+      <article class="stat-item" data-reveal>
+        <div class="stat-item__num"><span data-counter="95">0</span><i>%</i></div>
+        <h3 class="stat-item__title" data-tr="İş Yükü Azalma" data-en="Workload Reduction">İş Yükü Azalma</h3>
+        <p class="stat-item__body" data-tr="Manuel ve rutin işlerin eliminasyonu." data-en="Elimination of manual and routine work.">Manuel ve rutin işlerin eliminasyonu.</p>
+      </article>
+      <article class="stat-item" data-reveal>
+        <div class="stat-item__num">7/24</div>
+        <h3 class="stat-item__title" data-tr="Kesintisiz Hizmet" data-en="Uninterrupted Service">Kesintisiz Hizmet</h3>
+        <p class="stat-item__body" data-tr="Tüm dillerde her zaman aktif." data-en="Always active in all languages.">Tüm dillerde her zaman aktif.</p>
+      </article>
     </div>
+  </div>
 </section>
 
-<!-- Footer -->
-<div class="ft">
-    <p>© 2025 UgenX Technology. <span data-tr="Tüm hakları saklıdır." data-en="All rights reserved.">Tüm hakları saklıdır.</span></p>
-</div>
+<!-- ============== REFERANSLAR ============== -->
+<section class="refs" id="referanslar">
+  <div class="container">
+    <header class="section-head" data-reveal>
+      <span class="badge badge--soft" data-tr="Referanslarımız" data-en="Cases">Referanslarımız</span>
+      <h2 class="section-title" data-tr="Saha sonuçları." data-en="Field results.">Saha sonuçları.</h2>
+    </header>
 
-<!-- Scroll to Top -->
-<div class="st-w" id="stw">
-    <button class="st-b" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg>
-    </button>
-</div>
+    <div class="refs__grid">
+
+      <article class="ref" data-reveal>
+        <div class="ref__head">
+          <h3 class="ref__title" data-tr="Otel Grupları" data-en="Hotel Groups">Otel Grupları</h3>
+          <span class="ref__tag" data-tr="13 mülk" data-en="13 properties">13 mülk</span>
+        </div>
+        <blockquote class="ref__quote" data-tr="&ldquo;UgenX sayesinde gece yarısı bile müşteri kaybetmiyoruz. Müşteri memnuniyeti puanımız 4.9'a yükseldi. Hiçbir mesaj cevapsız kalmıyor ve ekibimiz stratejik işlere odaklanabiliyor.&rdquo;" data-en="&ldquo;Thanks to UgenX, we don't lose customers even at midnight. Our guest satisfaction score rose to 4.9. No message goes unanswered and our team can focus on strategic work.&rdquo;">
+          "UgenX sayesinde gece yarısı bile müşteri kaybetmiyoruz. Müşteri memnuniyeti puanımız 4.9'a yükseldi. Hiçbir mesaj cevapsız kalmıyor ve ekibimiz stratejik işlere odaklanabiliyor."
+        </blockquote>
+        <p class="ref__body" data-tr="13 farklı otelde uyguladığımız AI destekli rezervasyon sistemi ile Instagram ve WhatsApp'tan gelen sorguların %99'u müşteri adayına dönüştü. Çok dilli destek ile tüm platformlardan gelen sorulara 20 saniye içinde yanıt veriliyor." data-en="With our AI-powered reservation system deployed at 13 hotels, 99% of inquiries from Instagram and WhatsApp converted into leads. With multilingual support, queries from all platforms are answered within 20 seconds.">
+          13 farklı otelde uyguladığımız AI destekli rezervasyon sistemi ile Instagram ve WhatsApp'tan gelen sorguların %99'u müşteri adayına dönüştü. Çok dilli destek ile tüm platformlardan gelen sorulara 20 saniye içinde yanıt veriliyor.
+        </p>
+        <ul class="ref__metrics">
+          <li><span>%99</span><span data-tr="Müşteri adayı kazanımı" data-en="Lead conversion">Müşteri adayı kazanımı</span></li>
+          <li><span>&lt;30sn</span><span data-tr="Yanıt süresi" data-en="Response time">Yanıt süresi</span></li>
+        </ul>
+      </article>
+
+      <article class="ref" data-reveal>
+        <div class="ref__head">
+          <h3 class="ref__title" data-tr="E-Ticaret Kullanıcıları" data-en="E-Commerce Users">E-Ticaret Kullanıcıları</h3>
+          <span class="ref__tag" data-tr="500+ etkileşim/gün" data-en="500+ interactions/day">500+ etkileşim/gün</span>
+        </div>
+        <blockquote class="ref__quote" data-tr="&ldquo;Müşteri hizmetleri ekibimizi 8 kişiden 1 kişiye düşürdük. Sistem her şeyi hallediyor, biz sadece istisnalara bakıyoruz.&rdquo;" data-en="&ldquo;We reduced our customer service team from 8 to 1. The system handles everything, we only look at the exceptions.&rdquo;">
+          "Müşteri hizmetleri ekibimizi 8 kişiden 1 kişiye düşürdük. Sistem her şeyi hallediyor, biz sadece istisnalara bakıyoruz."
+        </blockquote>
+        <p class="ref__body" data-tr="Sipariş takibi, müşteri soruları ve iade süreçlerini tamamen otomatikleştirdik. Günde 500+ müşteri etkileşimi otomatik yönetiliyor." data-en="We fully automated order tracking, customer queries, and return processes. 500+ customer interactions per day are handled automatically.">
+          Sipariş takibi, müşteri soruları ve iade süreçlerini tamamen otomatikleştirdik. Günde 500+ müşteri etkileşimi otomatik yönetiliyor.
+        </p>
+        <ul class="ref__metrics">
+          <li><span>%95</span><span data-tr="Manuel iş yükü ↓" data-en="Manual workload ↓">Manuel iş yükü ↓</span></li>
+        </ul>
+      </article>
+
+      <article class="ref" data-reveal>
+        <div class="ref__head">
+          <h3 class="ref__title" data-tr="Kurumsal Şirketler" data-en="Enterprise">Kurumsal Şirketler</h3>
+          <span class="ref__tag" data-tr="3× verim" data-en="3× efficiency">3× verim</span>
+        </div>
+        <blockquote class="ref__quote" data-tr="&ldquo;Veriye dayalı karar alma süremiz 3 günden 3 saate düştü. UgenX sistemleri sayesinde gerçek zamanlı içgörüler elde ediyoruz.&rdquo;" data-en="&ldquo;Our data-driven decision time dropped from 3 days to 3 hours. With UgenX systems, we obtain real-time insights.&rdquo;">
+          "Veriye dayalı karar alma süremiz 3 günden 3 saate düştü. UgenX sistemleri sayesinde gerçek zamanlı içgörüler elde ediyoruz."
+        </blockquote>
+        <p class="ref__body" data-tr="Dahili süreç otomasyonları ve veri analizi ile operasyonel kararların %70'i artık AI tarafından alınıyor ve uygulanıyor." data-en="With internal process automation and data analysis, 70% of operational decisions are now made and executed by AI.">
+          Dahili süreç otomasyonları ve veri analizi ile operasyonel kararların %70'i artık AI tarafından alınıyor ve uygulanıyor.
+        </p>
+        <ul class="ref__metrics">
+          <li><span>3×</span><span data-tr="Operasyonel verim" data-en="Operational efficiency">Operasyonel verim</span></li>
+        </ul>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============== CTA ============== -->
+<section class="cta" id="iletisim">
+  <div class="container">
+    <div class="cta__inner" data-reveal>
+      <img src="UgenxLogo.png" alt="UgenX Technology" class="cta__logo" />
+      <span class="badge badge--inverse" data-tr="İletişim" data-en="Contact">İletişim</span>
+      <h2 class="cta__title" data-tr="Geleceğe hazır mısınız?" data-en="Ready for the future?">Geleceğe hazır mısınız?</h2>
+      <p class="cta__sub" data-tr="İşletmenizi bir sonraki seviyeye taşımak için bizimle iletişime geçin. 30 dakikalık ücretsiz keşif görüşmesi ile başlayalım." data-en="Get in touch to take your business to the next level. Let's start with a 30-minute free discovery call.">
+        İşletmenizi bir sonraki seviyeye taşımak için bizimle iletişime geçin. 30 dakikalık ücretsiz keşif görüşmesi ile başlayalım.
+      </p>
+
+      <div class="cta__actions">
+        <a href="mailto:info@ugenxteknoloji.com.tr" class="btn btn--primary btn--lg">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M4 6 H20 Q21 6 21 7 V17 Q21 18 20 18 H4 Q3 18 3 17 V7 Q3 6 4 6 Z M3 7 L12 13 L21 7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+          <span>info@ugenxteknoloji.com.tr</span>
+        </a>
+        <div class="cta__social">
+          <a href="https://www.instagram.com/ugenxteknoloji/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/company/ugenx-technology/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 10 V17 M8 7.5 V7.6 M12 17 V13 Q12 11 14 11 Q16 11 16 13 V17 M12 13 V10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer class="foot">
+  <div class="container">
+    <div class="foot__top">
+      <a href="#top" class="foot__brand" aria-label="UgenX Technology">
+        <span class="brand-name">UgenX<span class="brand-dot">.</span></span>
+      </a>
+      <nav class="foot__nav" aria-label="Alt menü">
+        <a href="#hizmetler" data-tr="Hizmetler" data-en="Services">Hizmetler</a>
+        <a href="#nasil" data-tr="Nasıl Çalışır" data-en="How It Works">Nasıl Çalışır</a>
+        <a href="#sektorler" data-tr="Sektörler" data-en="Industries">Sektörler</a>
+        <a href="#basari" data-tr="Başarılar" data-en="Results">Başarılar</a>
+        <a href="#referanslar" data-tr="Referanslar" data-en="Cases">Referanslar</a>
+        <a href="#iletisim" data-tr="İletişim" data-en="Contact">İletişim</a>
+      </nav>
+    </div>
+    <div class="foot__bot">
+      <span data-tr="© 2025 UgenX Technology. Tüm hakları saklıdır." data-en="© 2025 UgenX Technology. All rights reserved.">© 2025 UgenX Technology. Tüm hakları saklıdır.</span>
+      <a href="mailto:info@ugenxteknoloji.com.tr">info@ugenxteknoloji.com.tr</a>
+    </div>
+  </div>
+</footer>
 
 <script src="script.js"></script>
 </body>

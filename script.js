@@ -1,186 +1,189 @@
-// ========== UgenX Technology - script.js ==========
+/* ==========================================================
+   UgenX Technology · script.js (light)
+   ========================================================== */
 
-// ===== Sector Services Data =====
-// Each sector has an id (matching data-sector on chips), a title, and services array.
-// Each service has a name (TR/EN) and a link placeholder for future detail pages.
-const sectorServices = {
-    otelcilik: {
-        title: { tr: "Otelcilik Hizmetlerimiz", en: "Hospitality Services" },
-        services: [
-            { tr: "WhatsApp Chatbot", en: "WhatsApp Chatbot", link: "/hizmetler-demo.html" },
-            { tr: "Instagram Chatbot", en: "Instagram Chatbot", link: "/hizmetler-demo.html" },
-            { tr: "Yapay Zeka Destekli Resepsiyon", en: "AI-Powered Reception", link: "/hizmetler-demo.html" }
-        ]
-    },
-    hostes: {
-        title: { tr: "Hostes / Karşılama Hizmetlerimiz", en: "Hostess / Greeting Services" },
-        services: [
-            { tr: "Yapay Zeka Destekli Hostes", en: "AI-Powered Hostess", link: "/hizmetler-demo.html" }
-        ]
-    },
-    eticaret: {
-        title: { tr: "E-Ticaret Hizmetlerimiz", en: "E-Commerce Services" },
-        services: [
-            { tr: "WhatsApp Chatbot", en: "WhatsApp Chatbot", link: "/hizmetler-demo.html" },
-            { tr: "Instagram Chatbot", en: "Instagram Chatbot", link: "/hizmetler-demo.html" },
-            { tr: "Kişiselleştirilmiş Sesli Yapay Zeka", en: "Personalized Voice AI", link: "/hizmetler-demo.html" },
-            { tr: "Fatura Oluşturma Sistemi", en: "Invoice Generation System", link: "/hizmetler-demo.html" }
-        ]
-    },
-    kurumsal: {
-        title: { tr: "Kurumsal Hizmetlerimiz", en: "Corporate Services" },
-        services: [
-            { tr: "Yapay Zeka Destekli Satış Danışmanı", en: "AI-Powered Sales Consultant", link: "/hizmetler-demo.html" },
-            { tr: "Fatura Oluşturma Sistemi", en: "Invoice Generation System", link: "/hizmetler-demo.html" }
-        ]
-    },
-    saglik: {
-        title: { tr: "Sağlık Sektörü Hizmetlerimiz", en: "Healthcare Services" },
-        services: [
-            { tr: "Yapay Zeka Destekli Resepsiyon", en: "AI-Powered Reception", link: "/hizmetler-demo.html" }
-        ]
-    },
-    restoran: {
-        title: { tr: "Restoran & Cafe Hizmetlerimiz", en: "Restaurant & Cafe Services" },
-        services: [
-            { tr: "Kişiselleştirilmiş Sesli Yapay Zeka", en: "Personalized Voice AI", link: "/hizmetler-demo.html" },
-            { tr: "Fatura Sistemi", en: "Invoice System", link: "/hizmetler-demo.html" }
-        ]
-    }
-};
+(function () {
+  'use strict';
 
-// ===== State =====
-let sRef = null;
-let activeSector = null;
-let currentLang = 'tr';
+  /* 1. Sticky nav state */
+  const nav = document.getElementById('nav');
+  const onScroll = () => {
+    if (!nav) return;
+    if (window.scrollY > 16) nav.classList.add('is-scrolled');
+    else nav.classList.remove('is-scrolled');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 
-// ===== Logo Animation =====
-setTimeout(() => document.getElementById('logoTop').classList.add('show'), 400);
-
-// ===== Scroll Reveal =====
-const obs = new IntersectionObserver(
-    (entries) => entries.forEach((entry) => { if (entry.isIntersecting) entry.target.classList.add('vis'); }),
-    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
-);
-document.querySelectorAll('.fade').forEach((el) => obs.observe(el));
-
-// ===== Scroll Top Button =====
-window.addEventListener('scroll', () => {
-    document.getElementById('stw').classList.toggle('show', window.scrollY > window.innerHeight);
-});
-
-// ===== Hamburger Menu =====
-function toggleMenu() {
-    document.getElementById('ham').classList.toggle('open');
-    document.getElementById('side').classList.toggle('open');
-    document.getElementById('ov').classList.toggle('show');
-}
-
-function nav(id) {
-    toggleMenu();
-    setTimeout(() => document.getElementById(id).scrollIntoView({ behavior: 'smooth' }), 300);
-}
-
-// ===== Language =====
-function toggleLang() {
-    document.getElementById('ldd').classList.toggle('show');
-}
-
-document.addEventListener('click', (e) => {
-    if (!e.target.closest('.lang-btn') && !e.target.closest('.lang-dd')) {
-        document.getElementById('ldd').classList.remove('show');
-    }
-});
-
-function setLang(l) {
-    currentLang = l;
-    document.getElementById('lbl').textContent = l === 'tr' ? '🇹🇷 TR' : '🇬🇧 EN';
-    document.getElementById('ldd').classList.remove('show');
-
-    document.querySelectorAll('[data-' + l + ']').forEach((el) => {
-        const v = el.getAttribute('data-' + l);
-        if (v) {
-            if (el.classList.contains('ref-q')) el.innerHTML = v;
-            else el.textContent = v;
+  /* 2. Fade reveal — IntersectionObserver, simple */
+  const reveals = document.querySelectorAll('[data-reveal]');
+  if ('IntersectionObserver' in window && reveals.length) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          // small staggered delay for siblings
+          const siblings = Array.from(e.target.parentNode.children).filter(c => c.hasAttribute('data-reveal'));
+          const idx = Math.max(0, siblings.indexOf(e.target));
+          e.target.style.transitionDelay = (Math.min(idx, 5) * 0.06) + 's';
+          e.target.classList.add('is-in');
+          io.unobserve(e.target);
         }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    reveals.forEach((el) => io.observe(el));
+  } else {
+    reveals.forEach((el) => el.classList.add('is-in'));
+  }
+
+  /* 3. Counter animation when stats come in */
+  const counters = document.querySelectorAll('[data-counter]');
+  const animateCounter = (el) => {
+    const target = parseInt(el.getAttribute('data-counter'), 10);
+    const duration = 1600;
+    const start = performance.now();
+    const tick = (now) => {
+      const p = Math.min((now - start) / duration, 1);
+      const eased = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
+      el.textContent = Math.round(target * eased);
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+  if ('IntersectionObserver' in window && counters.length) {
+    const cio = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          animateCounter(e.target);
+          cio.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    counters.forEach((c) => cio.observe(c));
+  }
+
+  /* 4. Smooth anchor scroll */
+  document.querySelectorAll('a[href^="#"]').forEach((a) => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href');
+      if (id.length < 2) return;
+      const t = document.querySelector(id);
+      if (t) {
+        e.preventDefault();
+        t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        closeMobileMenu();
+      }
     });
+  });
 
-    document.querySelectorAll('.lang-dd button').forEach((b) => b.classList.remove('act'));
-    document.querySelector(".lang-dd button[onclick=\"setLang('" + l + "')\"]").classList.add('act');
+  /* 5. Active nav state */
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav__links a');
+  if (sections.length && navLinks.length && 'IntersectionObserver' in window) {
+    const sio = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          const id = e.target.id;
+          navLinks.forEach((l) => {
+            l.classList.toggle('is-active', l.getAttribute('href') === '#' + id);
+          });
+        }
+      });
+    }, { rootMargin: '-30% 0px -50% 0px' });
+    sections.forEach((s) => sio.observe(s));
+  }
 
-    // Re-render active sector services if one is open
-    if (activeSector) {
-        renderSectorServices(activeSector);
+  /* 6. Mobile menu */
+  const burger = document.getElementById('burger');
+  let mobileMenu = null;
+  const openMobileMenu = () => {
+    if (!mobileMenu) {
+      mobileMenu = document.createElement('div');
+      mobileMenu.className = 'nav__menu-mobile';
+      mobileMenu.innerHTML = `
+        <a href="#hizmetler" data-tr="Hizmetler" data-en="Services">Hizmetler</a>
+        <a href="#nasil" data-tr="Nasıl Çalışır" data-en="How It Works">Nasıl Çalışır</a>
+        <a href="#sektorler" data-tr="Sektörler" data-en="Industries">Sektörler</a>
+        <a href="#basari" data-tr="Başarılar" data-en="Results">Başarılar</a>
+        <a href="#referanslar" data-tr="Referanslar" data-en="Cases">Referanslar</a>
+        <a href="#iletisim" data-tr="İletişim" data-en="Contact">İletişim</a>
+      `;
+      // Eğer EN aktifse mobil menüyü de İngilizce yap
+      const currentLang = document.documentElement.lang;
+      mobileMenu.querySelectorAll('[data-tr][data-en]').forEach((el) => {
+        const text = el.getAttribute('data-' + currentLang);
+        if (text !== null) el.textContent = text;
+      });
+      document.body.appendChild(mobileMenu);
+      mobileMenu.querySelectorAll('a').forEach((a) => {
+        a.addEventListener('click', (e) => {
+          const id = a.getAttribute('href');
+          const t = document.querySelector(id);
+          if (t) {
+            e.preventDefault();
+            t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            closeMobileMenu();
+          }
+        });
+      });
     }
-}
-
-// ===== References Toggle =====
-function tRef(i) {
-    const el = document.getElementById('r' + i);
-    if (sRef === i) { el.classList.remove('open'); sRef = null; }
-    else {
-        document.querySelectorAll('.ref-d').forEach((d) => d.classList.remove('open'));
-        el.classList.add('open');
-        sRef = i;
+    mobileMenu.classList.add('is-open');
+    burger.classList.add('is-open');
+    burger.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  };
+  function closeMobileMenu() {
+    if (mobileMenu) mobileMenu.classList.remove('is-open');
+    if (burger) {
+      burger.classList.remove('is-open');
+      burger.setAttribute('aria-expanded', 'false');
     }
-}
-
-// ===== Sector Services Toggle =====
-function toggleSector(sectorId) {
-    const panel = document.getElementById('sc-panel');
-    const chips = document.querySelectorAll('.sc-ch');
-
-    // If same sector clicked, close it
-    if (activeSector === sectorId) {
-        panel.classList.remove('open');
-        chips.forEach(c => c.classList.remove('sc-active'));
-        activeSector = null;
-        return;
-    }
-
-    // Deactivate all chips, activate clicked one
-    chips.forEach(c => c.classList.remove('sc-active'));
-    const activeChip = document.querySelector('[data-sector="' + sectorId + '"]');
-    if (activeChip) activeChip.classList.add('sc-active');
-
-    // Render services
-    activeSector = sectorId;
-    renderSectorServices(sectorId);
-
-    // Open panel
-    panel.classList.add('open');
-}
-
-function renderSectorServices(sectorId) {
-    const panel = document.getElementById('sc-panel');
-    const data = sectorServices[sectorId];
-    if (!data) return;
-
-    const lang = currentLang;
-    const title = data.title[lang] || data.title.tr;
-
-    // Arrow SVG for service items
-    const arrowSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
-
-    let servicesHtml = '';
-    data.services.forEach((svc) => {
-        const name = svc[lang] || svc.tr;
-        servicesHtml += `
-            <li class="sc-svc-item" onclick="window.location.href='${svc.link}'">
-                <span class="sc-svc-star">*</span>
-                <span class="sc-svc-text">${name}</span>
-                <span class="sc-svc-arrow">${arrowSvg}</span>
-            </li>`;
+    document.body.style.overflow = '';
+  }
+  if (burger) {
+    burger.addEventListener('click', () => {
+      if (burger.classList.contains('is-open')) closeMobileMenu();
+      else openMobileMenu();
     });
+  }
 
-    panel.innerHTML = `
-        <div class="sc-services-inner">
-            <div class="sc-services-title">
-                <span class="sc-dot"></span>
-                ${title}
-            </div>
-            <ul class="sc-svc-list">
-                ${servicesHtml}
-            </ul>
-        </div>`;
-}
+  /* 7. Language switcher — gerçek TR/EN geçişi */
+  const setLanguage = (lang) => {
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-tr][data-en]').forEach((el) => {
+      const text = el.getAttribute('data-' + lang);
+      if (text !== null) {
+        // title etiketinde innerText değil document.title kullan
+        if (el.tagName === 'TITLE') {
+          document.title = text;
+        } else {
+          el.textContent = text;
+        }
+      }
+    });
+    // Update lang button states
+    document.querySelectorAll('.lang-btn').forEach((b) => {
+      b.classList.toggle('is-active', b.dataset.lang === lang);
+    });
+    // Persist preference
+    try { localStorage.setItem('ugenx-lang', lang); } catch(e) {}
+  };
+
+  // Initialize from localStorage or browser
+  let initialLang = 'tr';
+  try {
+    const saved = localStorage.getItem('ugenx-lang');
+    if (saved === 'tr' || saved === 'en') {
+      initialLang = saved;
+    } else if (navigator.language && navigator.language.toLowerCase().startsWith('en')) {
+      initialLang = 'en';
+    }
+  } catch(e) {}
+  if (initialLang !== 'tr') setLanguage(initialLang);
+
+  document.querySelectorAll('.lang-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      setLanguage(btn.dataset.lang);
+    });
+  });
+
+})();
